@@ -69,6 +69,16 @@
                 alt="imagem">
                 
         </div>
+
+        <div class='flex'>
+            Cole o link da foto:
+            <input v-model="tempImagem">
+            <button v-on:click='addFoto(tempImagem)'>
+                Adicionar Foto </button>
+
+        </div>
+
+
         <hr />
 
 
@@ -99,6 +109,7 @@
             visivel: true,
             contador: 0,
             imagens: ['images/tailwind.jfif', 'images/vue.jfif', 'https://i7.pngflow.com/pngimage/14/568/png-angularjs-logo-javascript-security-token-angle-triangle-logo-computer-programming-clipart.png'],
+            tempImagem: "",
             imagensE: 0,
             arrayDeNomes: ["Ana", "Beto", "Carlos"],
             totalDeNomes: 3,
@@ -110,11 +121,7 @@
         },
         methods: {
             trocaImagem: function (i) {
-//  debugger
-                let temp = this.imagensE + i;
-                
-                console.log(this.imagensE)
-                
+                let temp = this.imagensE + i;                
                 if (temp > this.imagens.length - 1  ) {
                     temp = 0
                 }else if ( temp < 0){
@@ -146,6 +153,20 @@
 
                 this.arrayDeNomes.push(item)
                 this.totalDeNomes = this.arrayDeNomes.length
+            },
+            addFoto: function (item = "") {
+                if (!item) {
+                    alert("Pelo menos o nome deve estar preenchido.")
+                    return
+                }
+
+                if (item.length < 2) {
+                    alert("Nome com no mínimo 2 caracteres.")
+                    return
+                }
+
+                this.imagens.push(item)
+                // this.totalDeNomes = this.arrayDeNomes.length
             },
             // liste outros métodos aqui
         }
