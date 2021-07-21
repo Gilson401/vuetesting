@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <!-- <link href="./styles/tailwind.min.css" rel="stylesheet"> -->
+    <link href="./styles/estilo.css" rel="stylesheet">
+    <!-- <meta http-equiv="refresh" content="5"> -->
+    <title>Exemplos em vue</title>
+
+    <link rel="preconnect"
+        href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"
+        crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap"
+        rel="stylesheet">
+
+
+
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+        
+        <br /> <br />
+<input v-model="nome">
+
+        <h3> meu nome é : {{nome}}</h3>
+        <br />
+        
+        <hr />
+
+        <br />
+        <div v-if="visivel">
+            <h3> h3 em if - Variável visivel é true </h3>
+        </div>
+        <div v-else>
+            <h3> H3 em esle - Variável visivel é false </h3>
+        </div>
+        <button v-on:click='toggleVisivel'> toggleVisivel
+        </button>
+
+        <br /> <br />
+        <hr />
+        <h3 v-on:click='addContador'> Contador:  {{contador}} </h3>
+     
+        <button v-on:click='addContador'> addContador
+            {{contador}} </button>
+        <button v-on:click='zeraContador'> zeraContador
+        </button>
+        <br /> <br />
+        <hr />
+
+        <h3 > Mudar fotos </h3>
+        <div>
+            <div class='flex'>
+                <button v-on:click='trocaImagem(-1)'>  Menos  </button>
+                <button v-on:click='trocaImagem(1)'> Mais </button>
+                
+            </div>
+            <img class='bordme-blue imglimit' v-bind:src='imagens[imagensE]'
+                alt="imagem">
+                
+        </div>
+        <hr />
+
+
+        <div class='flex'>
+            Nome:
+            <input v-model="tempNome">
+            <button v-on:click='addNome(tempNome)'>
+                Adicionar Nome </button>
+
+        </div>
+        <br />
+        <p v-for="nome in arrayDeNomes"> {{nome}}</p>
+        <h3> Total de nomes é {{totalDeNomes}} </h3>
+        <br />
+        <p v-for="objeto in arrayDeObjetos">{{objeto.nome}}
+            tem {{objeto.idade}} anos de idade.</p>
+        <br />
+
+        <div>
+</body>
+
+<script>
+    let root = new Vue({
+        el: "#root",
+        data: {
+            nome: "",
+            tempNome: "",
+            visivel: true,
+            contador: 0,
+            imagens: ['images/tailwind.jfif', 'images/vue.jfif', 'https://i7.pngflow.com/pngimage/14/568/png-angularjs-logo-javascript-security-token-angle-triangle-logo-computer-programming-clipart.png'],
+            imagensE: 0,
+            arrayDeNomes: ["Ana", "Beto", "Carlos"],
+            totalDeNomes: 3,
+            arrayDeObjetos: [
+                { nome: "Ana", idade: 45 },
+                { nome: "Beto", idade: 35 },
+                { nome: "Carlos", idade: 25 },
+            ]
+        },
+        methods: {
+            trocaImagem: function (i) {
+//  debugger
+                let temp = this.imagensE + i;
+                
+                console.log(this.imagensE)
+                
+                if (temp > this.imagens.length - 1  ) {
+                    temp = 0
+                }else if ( temp < 0){
+                    temp = this.imagens.length - 1
+                }
+
+                this.imagensE = temp;
+
+            },
+            toggleVisivel: function () {
+                this.visivel = !this.visivel;
+            },
+            addContador: function () {
+                this.contador++
+            },
+            zeraContador: function () {
+                this.contador = 0;
+            },
+            addNome: function (item = "") {
+                if (!item) {
+                    alert("Pelo menos o nome deve estar preenchido.")
+                    return
+                }
+
+                if (item.length < 2) {
+                    alert("Nome com no mínimo 2 caracteres.")
+                    return
+                }
+
+                this.arrayDeNomes.push(item)
+                this.totalDeNomes = this.arrayDeNomes.length
+            },
+            // liste outros métodos aqui
+        }
+
+    });
+</script>
+
+<style scoped>
+    .flex {
+        display: flex;
+        background-color: cornflowerblue;
+    }
+
+    .div0 {
+        height: 300px;
+        width: 50vw;
+        border: 1px red solid;
+    }
+</style>
+</body>
+
+</html>
