@@ -28,13 +28,17 @@
 
 <body>
     <div id="root">
-        <h3> Agora é : {{agora}} conforme created</h3>
 
-        <brhrbr></brhrbr>
+
+        <br /> <br />
         <input v-model="nome">
 
         <h3> meu nome é : {{nome}}</h3>
-        <brhrbr></brhrbr>
+        <br />
+
+        <hr />
+
+        <br />
 
         <h3 v-show="visivel"> h3 em v-show - Variável
             visivel </h3>
@@ -131,7 +135,7 @@
             tem {{objeto.idade}} anos de idade.</p>
         <br />
 
-        <brhrbr></brhrbr>
+
         <h3>Abaixo temos os componentes: </h3>
 
         <componenta></componenta>
@@ -142,40 +146,35 @@
 
         <h3>Abaixo temos o componente component-prop que
             está recebendo imagens[imagensE]: </h3>
-        <!-- instanciamento do componente e da props: -->
         <component-props :myprop='imagens[imagensE]'>
-        </component-props>
-        <component-props v-bind:myprop='imagens[imagensE]'>
         </component-props>
 
         <div class='flex'>
-            <button v-on:click='trocaImagem(-1)'> Menos
-            </button>
-            <button v-on:click='trocaImagem(1)'> Mais
-            </button>
-        </div>
+                <button v-on:click='trocaImagem(-1)'> Menos
+                </button>
+                <button v-on:click='trocaImagem(1)'> Mais
+                </button>
 
-        <brhrbr></brhrbr>
+            </div>
 
-
-
-        <div>
+            <div>
 
 </body>
 
 <script>
+    
     Vue.component('component-props', {
-        props: ['myprop'], //props do componente devem ser declaradas no atributo props
-        template: `<p> {{myprop}} </p>`  //chamada da prop dentro do remplate
+        props: ['myprop'],
+        template: `<p> {{myprop}} </p>`
     })
 
 
-    Vue.component('componenta', { template: `<h1> eu sou o conteúdo do componenta </h1>` })
+    Vue.component('componenta', { template: `<h1> eu sou o conteúdo do componbenta </h1>` })
     Vue.component('componentc', {
         template: `
-        <div >
+        <div class='bordme-red'>
         <a href="https://gilsonpaulo.com.br">componentc</a>
-        <br/> <h2>Componenteb abaixo de mim: </h2>  <componenta></componenta></div>   ` })
+        <br/> <h2>Componenteb 0 abaixo de mim: </h2>  <componenta></componenta></div>   ` })
     Vue.component('componentb', { template: `<button> componentb </button>` })
 
     Vue.component('brhrbr', { template: `<div> <br/>  <hr/>  <br/> </div>` })
@@ -187,7 +186,6 @@
         data: {
             nome: "",
             tempNome: "",
-            agora: "",
             visivel: true,
             contador: 0,
             imagens: ['images/tailwind.jfif', 'images/vue.jfif', 'https://i7.pngflow.com/pngimage/14/568/png-angularjs-logo-javascript-security-token-angle-triangle-logo-computer-programming-clipart.png'],
@@ -280,18 +278,8 @@
                 return value + " Rr"
             }
         },
-        created: function () {
-            var today = new Date();
-            var time = today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear() + ", " +
-            today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            this.agora = time
-        },
-        mounted: function () { console.log("criado") },
-        updated: function () { console.log("updated") },
-        destroyed: function () { console.log("destroyed") }
-        //vários outros eventos do ciclo de vida...
-    });
 
+    });
 </script>
 
 <style scoped>

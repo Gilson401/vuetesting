@@ -2,6 +2,14 @@
     font-family: 'Montserrat Alternates', sans-serif;
 }
 
+.bloco{
+    width: 100px;
+    
+}
+
+.flex{
+    display: flex;
+}
 .div0{
     height: auto;
     /* width: auto; */
