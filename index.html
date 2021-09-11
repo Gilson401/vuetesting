@@ -168,8 +168,6 @@
         props: ['myprop'], //props do componente devem ser declaradas no atributo props
         template: `<p> {{myprop}} </p>`  //chamada da prop dentro do remplate
     })
-
-
     Vue.component('componenta', { template: `<h1> eu sou o conteúdo do componenta </h1>` })
     Vue.component('componentc', {
         template: `
@@ -177,7 +175,6 @@
         <a href="https://gilsonpaulo.com.br">componentc</a>
         <br/> <h2>Componenteb abaixo de mim: </h2>  <componenta></componenta></div>   ` })
     Vue.component('componentb', { template: `<button> componentb </button>` })
-
     Vue.component('brhrbr', { template: `<div> <br/>  <hr/>  <br/> </div>` })
 
 
